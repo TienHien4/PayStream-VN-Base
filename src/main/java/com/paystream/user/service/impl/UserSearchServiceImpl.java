@@ -95,6 +95,11 @@ public class UserSearchServiceImpl implements UserSearchService {
                         .gte(JsonData.of(10)).lt(JsonData.of(20))))
                 .build();
 
+        NativeQuery query8 = NativeQuery.builder()
+                .withQuery(t -> t.range(r -> r.field("createdAt")
+                        .gte(JsonData.of("2023-01-01T00:00:00Z")).lt(JsonData.of("2024-01-01T00:00:00Z"))))
+                .build();
+
 
         SearchHits<UserDocument> searchHits = elasticsearchOperations.search(query, UserDocument.class);
 
